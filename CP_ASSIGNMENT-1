@@ -1,0 +1,273 @@
+//Twopeoplemeet
+
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+bool twoPeopleMeet(int d1, int d2, int v1, int v2) 
+{  
+    if (d1>d2 && v1>v2) 
+       return false; 
+    if (d1<d2 && v1<v2) 
+       return false;          
+    while (d1 >= d2) 
+	{  
+        if (d1 == d2)  
+            return true; 
+
+        d1 = d1 + v1;  
+        d2 = d2 + v2;  
+    } 
+    return false;    
+} 
+  
+
+int main() 
+{ 
+    int d1=6,d2=4,v1=6,v2=8; 
+    if (twoPeopleMeet(d1,d2,v1,v2)) 
+        cout<<"True";     
+    else 
+        cout<<"False"; 
+    return 0; 
+}
+
+//Alternatesort
+
+#include <bits/stdc++.h> 
+using namespace std; 
+ 
+void alternateSort(int arr[],int n) 
+{ 
+	sort(arr,arr+n); 
+	int i=0,j=n-1; 
+	while(i<j)
+	{ 
+		cout<<arr[j--]<<" "; 
+		cout<<arr[i++]<<" "; 
+	} 
+	if(n%2!=0) 
+		cout<<arr[i]; 
+} 
+
+int main() 
+{ 
+	int arr[]={2,15,5,8,9,12}; 
+	int n=sizeof(arr)/sizeof(arr[0]); 
+	alternateSort(arr,n); 
+	return 0; 
+} 
+
+//Findfirstandlastelement
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+void findFirstAndLast(int arr[],int n,int key)
+{
+    int first=-1,last=-1;
+    for(int i=0;i<n;i++)
+	{
+        if(key!=arr[i])
+            continue;
+        if(first==-1)
+            first=i;
+        last=i;
+    }
+    if(first!=-1)
+        cout<<"First Occurrence = "<<first<<"\nLast Occurrence = "<<last;
+    else
+        cout<<"Not Found";
+}
+
+int main()
+{
+    int arr[]={1,2,3,4,5,5,6,7,8,9};
+    int n=sizeof(arr)/sizeof(int);
+    int key=5;
+    findFirstAndLast(arr,n,key);
+    return 0;
+}
+
+//Findmajorityelement
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void findMajorityElement(int arr[],int n)
+{
+    int index=-1;
+	int maxi=0;
+    for(int i=0;i<n;i++)
+	{
+        int x=0;
+        for (int j=0;j<n;j++)
+		{
+            if (arr[i]==arr[j])
+                x++;
+        }
+        if (x>maxi)
+		{
+            maxi=x;
+            index=i;
+        }
+    }
+    if (maxi>n/2)
+        cout<<arr[index]<<endl;
+    else
+        cout<<"Majority Element does not exist"<<endl;
+}
+
+int main()
+{
+    int arr[]={2,3,2,2,3,2,1};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    findMajorityElement(arr,n);
+    return 0;
+}
+
+//Findpeakelement
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int findPeakElement(int arr[],int n)
+{
+    if (n==1) 
+     	return arr[0];
+    if (arr[0]>=arr[1])
+    	return 0;
+    if (arr[n-1]>=arr[n-2])
+        return n-1;
+ 
+    for (int i=1;i<n-1;i++)
+	{
+        if (arr[i]>=arr[i-1] && arr[i]>=arr[i+1])
+            return i;
+    }
+}
+
+int main()
+{
+    int arr[]={2,5,15,6,2,1};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    cout<<"Peak Point Index::"<< findPeakElement(arr,n);
+    return 0;
+}
+
+//Searchsortedmatrix
+
+#include <bits/stdc++.h>
+using namespace std;
+int searchSortedMatrix(int mat[4][4],int n,int key)
+{
+    if (n==0)
+        return -1;	 
+	for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        if(mat[i][j]==key)
+        {
+            cout<<"Element found at index("<<i<<","<<j<<")\n";
+            return 1;
+        }
+    }
+    cout << "\n Element not found";
+    return 0; 
+}
+
+int main()
+{
+    int mat[4][4]={ {10,21,32,43},
+                    {15,26,37,48},
+                    {25,36,47,58},
+                    {32,42,54,65} };
+    searchSortedMatrix(mat,4,26);
+    return 0;
+}
+
+//Segragrating 0 and 1
+
+#include <bits/stdc++.h> 
+using namespace std; 
+void segregate01(int arr[],int n) 
+{ 
+	int count=0; 
+	for(int i=0;i<n;i++)
+	{ 
+		if(arr[i]==0) 
+			count++; 
+	} 
+ 
+	for(int i=0;i<count;i++) 
+		arr[i]=0; 
+	for(int i=count;i<n;i++) 
+		arr[i]=1; 
+} 
+ 
+void print(int arr[],int n) 
+{ 
+	cout<<"Array after segregation is "; 
+	for (int i=0;i<n;i++) 
+		cout<<arr[i]<<" "; 
+} 
+ 
+int main() 
+{ 
+	int arr[]={0,1,0,1,0,1}; 
+	int n=sizeof(arr)/sizeof(arr[0]); 
+	segregate01(arr,n); 
+	print(arr,n); 	
+	return 0; 
+} 
+
+//Sort012
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void sorting(int arr[],int n) 
+{
+    int left=0;
+    int right=n-1;
+    int mid=0;
+    while(mid<=right) 
+	{
+        if(arr[mid]==0)
+		{
+                int temp = arr[left];
+                arr[left] = arr[mid];
+                arr[mid] = temp;
+                left++;
+                mid++;
+        }
+		else if(arr[mid] == 1)
+		{
+            mid++;
+        } 
+		else 
+		{
+            int temp = arr[mid];
+            arr[mid] = arr[right];
+            arr[right] = temp;
+            right--;
+        }
+    }
+}
+
+
+void printArray(int arr[],int n)
+{
+    for(int i=0;i<n;i++)
+	{
+        cout<<arr[i]<<"   ";
+    }
+}
+
+int main() 
+{
+    int arr[] ={0, 2, 1, 1, 2, 1, 0, 0, 2, 1, 0, 1, 2, 0, 0, 1, 2};
+    int n=sizeof(arr)/sizeof(arr[0]);
+	sorting(arr,n);
+    printArray(arr,n);
+    return 0;
+}
