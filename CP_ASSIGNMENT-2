@@ -1,0 +1,143 @@
+//Fibonacci
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int fibonacci(int n)
+{
+    if(n<=1)
+        return n;
+    return fibonacci(n-1)+fibonacci(n-2);
+}
+ 
+int main ()
+{
+    int n=8;
+    cout<<fibonacci(n);
+    getchar();
+    return 0;
+}
+
+//Factorial
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int factorial(int n)
+{
+    if(n==1 || n==0)
+        return 1;
+    return n*factorial(n-1);
+}
+ 
+int main ()
+{
+    int n=5;
+    cout<<factorial(n);
+    getchar();
+    return 0;
+}
+
+//GenerateParenthesis
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void Parenthesis(int left,int right,string s) 
+{
+	if(left>right)
+	{
+        return;
+	}
+
+    if (left==0 && right==0)
+	{
+        cout<<s<<"\n";
+        return;
+    }
+
+    if (left>0)
+	{
+        Parenthesis(left-1,right,s+"(");
+    }
+
+    if (right>0)
+	{
+        Parenthesis(left,right-1,s+")");
+	}
+}
+
+int main()
+{
+	Parenthesis(2,2,"");
+	return 0;
+}
+
+//CountPossiblePaths
+
+#include <iostream> 
+using namespace std; 
+
+int coutPossiblePaths(int x, int y) 
+{  
+    if (x==1 || y==1) 
+        return 1; 
+    return coutPossiblePaths(x-1,y)+coutPossiblePaths(x,y-1); 
+} 
+  
+int main() 
+{ 
+    cout<<coutPossiblePaths(4,3); 
+    return 0; 
+} 
+
+//PrintAllDecoding
+
+#include<bits/stdc++.h>
+#include<cstring>
+using namespace std;
+
+void printAlllDecoing(string number, string output)
+{
+	if(number.length()==0)
+	{
+        cout<<output<<"\n";
+        return;
+    }
+
+    string firstCharacter=number.substr(0,1);
+	stringstream Int(firstCharacter); 
+    int firstNumber=0; 
+    Int>>firstNumber; 
+	
+	if(firstNumber != 0)
+	{
+        char character = (char)('a' + firstNumber - 1);
+            printAlllDecoing(number.substr(1),output+character);
+    }
+
+    if(number.length()<=1)
+	{
+            return;
+    }
+
+	string firsttwoCharacters=number.substr(0,2);
+
+	stringstream Int2(firsttwoCharacters); 
+    int firsttwoNumbers=0; 
+    Int2>>firsttwoNumbers;
+
+
+    if(firsttwoNumbers <= 26)
+	{
+        char character = (char)('a' + firsttwoNumbers - 1);
+        printAlllDecoing(number.substr(2),output + character);
+    }
+
+}
+
+int main()
+{
+	printAlllDecoing("2010", "");
+	return 0;
+}
