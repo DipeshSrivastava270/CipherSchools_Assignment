@@ -141,3 +141,86 @@ int main()
 	printAlllDecoing("2010", "");
 	return 0;
 }
+
+//NQueens
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define N 4
+bool isSafeToPlace(int grid[N][N], int i, int k);
+bool placeQueens(int grid[N][N],int i)
+{
+	if (i ==sizeof(grid)) 
+	{
+    	for (int row = 0; row < sizeof(grid); row++)
+		{
+            for (int col = 0; col < sizeof(grid[0]); col++)
+			{
+                cout<<grid[row][col]<<"   ";
+                }
+                cout<<"\n";
+            }
+            return true;
+    }
+	for (int k = 0; k < sizeof(grid[0]); k++)
+	{
+        if (isSafeToPlace(grid, i, k))
+		{
+            grid[i][k] = 1;
+            bool isPlaced = placeQueens(grid, i + 1);
+            if (isPlaced)
+			{
+                return true;
+            }
+                grid[i][k] = 0;
+        }
+    }
+        return false;
+}
+
+
+bool isSafeToPlace(int grid[N][N], int i, int k) 
+{
+	for (int row = 0; row < i; row++) 
+	{
+        if (grid[row][k] == 1)
+		{
+                return false;
+        }
+    }
+
+    int x = i;
+    int y = k;
+
+    while (x >= 0 && y >= 0)
+	{
+        if (grid[x][y] == 1)
+		{
+            return false;
+        }
+        x--;
+        y--;
+    }
+
+    x = i;
+    y = k;
+    while (x >= 0 && y < sizeof(grid))
+	{
+    	if (grid[x][y] == 1)
+		{
+            return false;
+        }
+        x--;
+        y++;
+    }
+	return true;
+}
+
+
+int main()
+{	
+    int grid[N][N];
+	placeQueens(grid,0);
+}
+
